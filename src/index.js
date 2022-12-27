@@ -35,7 +35,7 @@ export const values = (object) => {
 export const entries = (object) => {
     let arr = [];
     for (let entries in object) {
-        arr.push(`[${entries}, ${object[entries]}]`);
+        arr.push([entries, object[entries]]);
     }
     return arr;
 
@@ -48,22 +48,10 @@ export const entries = (object) => {
  * @returns {Object}
  */
 export const fromEntries = (entries) => {
-
-     return Object.fromEntries(entries)
-
-//плохо работает
-    // let arr = [];
-    // for (let ent in entries) {
-    //     arr.push(`[${ent}, ${entries[ent]}]`);
-    // }
-    // return {...arr};
-
-    //тоже плохо работает
-   //  let obj = {};
-   //  for (let ent in entries) {
-   //      obj[ent] = entries[ent]
-   //  }
-   //  return obj;
-
-}
+    let obj = {}
+    for (let item of entries) {
+        obj[item[0]] = item[1]
+    };
+    return obj
+};
 
